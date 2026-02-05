@@ -15,7 +15,7 @@
 -- descricao varchar (100) not null,
 -- cod_barras varchar (14),
 -- valor decimal(16,2)
-)
+-- )
 
 -- alter table produto add constraint pk_id_produto primary key (id)
 
