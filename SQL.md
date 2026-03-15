@@ -190,4 +190,135 @@ legíveis.
   2. `WHERE`
   3. `SELECT`
   4. `ORDER BY`
+## 11. Linguagem SQL
+### 11.1 Chave Estrangeira
+- O que é **Chave Estrangeira (Foreign Key)**?
+- A **chave estrangeira** é um campo de uma tabela que **aponta para a chave primária de outra
+tabela**.
+- :point_right: Ela serve para **criar relacionamento entre tabelas**.
+- Em outras palavras:
+  - A chave estrangeira é o que “liga” uma tabela à outra em um banco de dados relacional.
+### 11.2 Por que precisamos dela?
+- Sem chave estrangeira:
+  - As tabelas ficam **isoladas**
+  - Não há garantia de que os dados combinam
+  - Podem existir registros “órfãos” (sem relação real)
+- Com chave estrangeira:
+  - O banco **garante integridade dos dados**
+  - Evita erros e inconsistências
+  - Representa relações do mundo real (cliente → pedido, aluno → matrícula, etc.)
+### 11.3 Exemplo prático - Tabela de Clientes
+| Id(PK) | Nome |
+| :--- | :--- |
+| 1 | Ana Silva |
+| 2 | João Souza |
+### 11.4 Exemplo prático - Tabela de Pedidos
+| Id(PK) | clienteld (FK) | Total |
+| :--- | :--- | :--- |
+| 1001 | 1 | 3500 |
+| 1002 | 2 | 200 |
+| 1003 | 1 | 1200 |
+### 11.4 Normalização 
+- Normalizar um banco de dados é **organizar as informações para que cada dado exista apenas
+uma vez**, evitando repetição, erros e bagunça nas tabelas.
+### 11.5 Forma Não Normalizadas (UNF)
+| OrderID | CustomerName | CustomerPhone | Products | Total |
+| :--- | :--- | :--- | :--- | :--- |
+| 1001 | Ana Silva | 9999-1111 | Notebook, Mouse | 3500 |
+| 1002 | João Souza | 9888-2222 | Teclado | 200 |
+| 1003 | Ana Silva | 9999-1111 | Monitor, Cabo HDMI, Mouse | 1200 |
+### 11.5 Forma Não Normalizada (UNF)
+- Todos os dados estão misturados em uma única tabela, com grupos repetidos.
+- Dados do cliente repetidos.
+- Difícil de consultar e manter.
+### 11.6 Primeira Forma Normal (1FN)
+- Os campos devem ser atômicos (um único valor por célula).
 
+| OrderID | CustomerName | CustomerPhone | Product | Total |
+| :--- | :--- | :--- | :--- | :--- |
+| 1001 | Ana Silva | 9999-1111 | Notebook | 3500 | 
+| 1001 | Ana Silva | 9999-1111 | Mouse | 3500 |
+| 1002 | João Souza | 9888-2222 | Teclado | 200 |
+| 1003 | Ana Silva | 9999-1111 | Monitor | 1200 |
+| 1003 | Ana Silva | 9999-1111 | Cabo HDMI | 1200 |
+| 1003 | Ana Silva | 9999-1111 | Mouse | 1200 |
+### 11.7 Primeira Forma Normal (1FN)
+- Problema: Dados do cliente continuam duplicados.
+- Total pertece APENAS ao pedido.
+- Ainda existem dependências (responsabilidades) na mesma tabela.
+### Segunda Forma Normal (2FN)
+- Regras: 
+  - Deve estar na 1FN.
+  - Removemos dependências parciais.
+  - Cada entidade passa a ter sua própria tabela e ter sua própria chave primária.
+### Segunda Forma Normal (2FN)
+| CustumersID | Nome | Telefone |
+| :--- | :--- | :--- | 
+| 1 | Ana Silva | 9999-1111 |
+| 2 | João Souza | 9888-2222 |
+
+| OrderID | CustomerID | Total |
+| :--- | :--- | :--- |
+| 1001 | 1 | 3500 |
+| 1002 | 2 | 200 |
+| 1003 | 1 | 1200 |
+
+### Segunda Forma Normal (2FN)
+| OrderID | Produto |
+| :--- | :--- |
+| 1001 | Notebook |
+| 1001 | Mouse |
+| 1002 | Teclado |
+| 1003 | Monitor |
+| 1003 | Cabo HDMI |
+| 1003 | Mouse |
+
+### Segunda Forma Normal (2FN)
+-Problema 
+  - Produto é um texto livre... está "solto".
+### Terceira Forma Normal (3FN)
+- Regras:
+  - Deve estar na 2FN
+  - Remover dependências transitivas.
+    - Campos não-chave DEVEM depender apenas da chave.
+### Terceira Forma Normal (3FN)
+| CustomerID | Nome | Telefone |
+| :--- | :--- | :--- | 
+| 1 | Ana Silva | 9999-1111 | 
+| 2 | João Souza | 9888-2222 |
+
+| ProductID | NomeProduto | 
+| :--- | :--- | 
+| 10 | Notebook |
+| 11 | Mouse | 
+| 12 | Teclado | 
+| 13 | Monitor | 
+| 14 | Cabo HDMMI |
+
+### Terceira Forma Normal (3FN)
+| Order ID | CustomersID | Total | 
+| :--- | :--- | :--- |
+| 1001 | 1 | 3500 | 
+| 1002 | 2 | 200 |
+| 1003 | 1 | 1200 | 
+
+| OrderID | ProductID | 
+| :--- | :--- |
+| 1001 | 10 |
+| 1001 | 11 |
+| 1002 | 12 |
+| 1003 | 13 |
+| 1003 | 14 |
+| 1003 | 11 |
+### Resultado
+- **O banco de dados agora possui**
+  - Ausência de redundância.
+  - Relacionamentos claros (Chaves Estrangeiras).
+    - Estrutura relacional correta.
+  - Melhor desempenho.
+  - Manutenção facilitada.
+- **Isso torna os bancos de dados**
+  - Mais eficientes.
+  - Mais confiáveis.
+  - Mais fáceis de escalar.
+  - Mais fáceis de entender.
