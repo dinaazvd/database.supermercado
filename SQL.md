@@ -322,3 +322,35 @@ uma vez**, evitando repetição, erros e bagunça nas tabelas.
   - Mais confiáveis.
   - Mais fáceis de escalar.
   - Mais fáceis de entender.
+## Linguagem SQL - Métodos de Combinação
+### JOINS (Adição de Colunas - Horizontal)
+- Conectamos tabelas lateralmente através de uma coluna comum (Chave).
+  - Inner Join: Apenas o que existe em ambas as tabelas.
+  - Left Join: Mantemos tudo da tabela à esquerda e trazemos o que houver da direita.
+  - Right Join: Mantemos tudo da direita e trazemos o que houver da esquerda.
+  - Full Join: Trazemos tudo de ambos os lados, independentemente de haver correspondência.
+### Como Usamos Joins
+- Ao escrevermos um JOIN, devemos especificar a relação:
+
+       SELECT
+        TabelaA.Nome,
+        TabelaB.Pais
+      FROM
+        TabelaA INNER JOIN TabelaB ON TabelaA.id = TabelaB.id;
+
+### Operadores SET (Adição de Linhas - Vertical)   
+- Empilhamos resultados de consultas diferentes, desde que tenham a mesma estrutura de colunas.
+  - UNION: Combina os resultados e remove duplicados.
+  - UNION ALL: Combina tudo, incluindo duplicados (é mais rápido).
+  - EXCEPT / MINUS: Mostra o que existe no primeiro conjunto mas não no segundo.
+  - INTERSECT: Mostra apenas o que é comum a ambos os conjuntos.
+### Como Usamos Operadores SET
+    SELECT
+      Nome
+    FROM
+      Clientes
+    UNION 
+    SELECT
+      Nome 
+    FROM 
+      Funcionarios;
