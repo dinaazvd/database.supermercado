@@ -242,11 +242,11 @@ uma vez**, evitando repetição, erros e bagunça nas tabelas.
 | 1003 | Ana Silva | 9999-1111 | Monitor | 1200 |
 | 1003 | Ana Silva | 9999-1111 | Cabo HDMI | 1200 |
 | 1003 | Ana Silva | 9999-1111 | Mouse | 1200 |
-### 11.7 Primeira Forma Normal (1FN)
+###  Primeira Forma Normal (1FN)
 - Problema: Dados do cliente continuam duplicados.
 - Total pertece APENAS ao pedido.
 - Ainda existem dependências (responsabilidades) na mesma tabela.
-### Segunda Forma Normal (2FN)
+### 11.7 Segunda Forma Normal (2FN)
 - Regras: 
   - Deve estar na 1FN.
   - Removemos dependências parciais.
@@ -276,7 +276,7 @@ uma vez**, evitando repetição, erros e bagunça nas tabelas.
 ### Segunda Forma Normal (2FN)
 -Problema 
   - Produto é um texto livre... está "solto".
-### Terceira Forma Normal (3FN)
+### 11.8 Terceira Forma Normal (3FN)
 - Regras:
   - Deve estar na 2FN
   - Remover dependências transitivas.
@@ -310,7 +310,7 @@ uma vez**, evitando repetição, erros e bagunça nas tabelas.
 | 1003 | 13 |
 | 1003 | 14 |
 | 1003 | 11 |
-### Resultado
+### 11.9 Resultado
 - **O banco de dados agora possui**
   - Ausência de redundância.
   - Relacionamentos claros (Chaves Estrangeiras).
@@ -322,14 +322,14 @@ uma vez**, evitando repetição, erros e bagunça nas tabelas.
   - Mais confiáveis.
   - Mais fáceis de escalar.
   - Mais fáceis de entender.
-## Linguagem SQL - Métodos de Combinação
-### JOINS (Adição de Colunas - Horizontal)
+## 12 Linguagem SQL - Métodos de Combinação
+### 12.1 JOINS (Adição de Colunas - Horizontal)
 - Conectamos tabelas lateralmente através de uma coluna comum (Chave).
   - Inner Join: Apenas o que existe em ambas as tabelas.
   - Left Join: Mantemos tudo da tabela à esquerda e trazemos o que houver da direita.
   - Right Join: Mantemos tudo da direita e trazemos o que houver da esquerda.
   - Full Join: Trazemos tudo de ambos os lados, independentemente de haver correspondência.
-### Como Usamos Joins
+### 12.2 Como Usamos Joins
 - Ao escrevermos um JOIN, devemos especificar a relação:
 
        SELECT
@@ -338,13 +338,13 @@ uma vez**, evitando repetição, erros e bagunça nas tabelas.
       FROM
         TabelaA INNER JOIN TabelaB ON TabelaA.id = TabelaB.id;
 
-### Operadores SET (Adição de Linhas - Vertical)   
+### 12.3 Operadores SET (Adição de Linhas - Vertical)   
 - Empilhamos resultados de consultas diferentes, desde que tenham a mesma estrutura de colunas.
   - UNION: Combina os resultados e remove duplicados.
   - UNION ALL: Combina tudo, incluindo duplicados (é mais rápido).
   - EXCEPT / MINUS: Mostra o que existe no primeiro conjunto mas não no segundo.
   - INTERSECT: Mostra apenas o que é comum a ambos os conjuntos.
-### Como Usamos Operadores SET
+### 12.4 Como Usamos Operadores SET
     SELECT
       Nome
     FROM
