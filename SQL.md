@@ -167,6 +167,7 @@ o pedido:
    - Operadores – Usados para comparações.
    - Literais – Valores constantes ou strings.
 ## 6. Estrutura Básica de Consulta
+
     SELECT
 
       colum_name
@@ -281,7 +282,7 @@ uma vez**, evitando repetição, erros e bagunça nas tabelas.
   - Deve estar na 2FN
   - Remover dependências transitivas.
     - Campos não-chave DEVEM depender apenas da chave.
-### Terceira Forma Normal (3FN)
+###  Terceira Forma Normal (3FN)
 | CustomerID | Nome | Telefone |
 | :--- | :--- | :--- | 
 | 1 | Ana Silva | 9999-1111 | 
@@ -345,6 +346,7 @@ uma vez**, evitando repetição, erros e bagunça nas tabelas.
   - EXCEPT / MINUS: Mostra o que existe no primeiro conjunto mas não no segundo.
   - INTERSECT: Mostra apenas o que é comum a ambos os conjuntos.
 ### 12.4 Como Usamos Operadores SET
+
     SELECT
       Nome
     FROM
@@ -354,3 +356,61 @@ uma vez**, evitando repetição, erros e bagunça nas tabelas.
       Nome 
     FROM 
       Funcionarios;
+
+## 13 Funções de Linha Única no SQL
+### 13.1 O que são funções SQL?
+- **Definição:** Conjuntos de instruções que recebem um ou mais valores de entrada e retornam um valor de saída.
+- **Utilidade:**
+  - **Limpeza:** Remover espaços extras ou caracteres indesejados.
+  -  **Transformação:** Alterar  formatos de data ou converter textos.
+  -  **Análise:** Realizar cálculos rápidos por linha.
+- **Processo: Entrada (Valor) -> FUNÇÃO -> Saída (Novo Valor)**
+### 13.2 Funções de Texto (String Functions)
+- **Manipulação:**
+  - **CONCAT:** Une duas ou mais strings (ex: Nome + Sobrenome).
+  - **UPPER / LOWER:** Converte o texto para MAIÚSCULO ou minúsculo.
+  - **TRIM:** Remove espaços em branco no início e no fim.
+  - **REPLACE:** Substitui um caractere ou trecho de texto por outro.
+- **Extração e Medida:**
+  - **LEN:** Retorna a quantidade de caracteres.
+  - **LEFT / RIGHT:** Extrai caracteres a partir da esquerda ou direita.
+  - **SUBSTRING:** Extrai uma parte específica do texto de qualquer posição.
+### 13.3 Funções de Data e Hora (Date & Time)  
+- **Cálculos:**
+  - **DATEADD:** Adiciona um intervalo (dias, meses, anos) a uma data.
+  - **DATEDIFF:** Calcula a diferença entre duas datas.
+- **Extração de Partes:**
+  - **YEAR, MONTH, DAY:** Extraem o ano, mês ou dia numérico.
+  - **DATENAME:** Retorna o nome da parte da data (ex: "Janeiro", "Segunda-feira").
+- **Conversão:**
+  - **CAST / CONVERT:** Alteram o tipo de dado (ex: de Texto para Data).
+  - **FORMAT:** Define como a data será exibida (ex: 'dd/MM/yyyy').
+### 13.4 Tratamento de Valores Nulos (NULL Functions)
+- **Por que tratar nulos?** Evitar erros em cálculos e garantir relatórios precisos.
+- **Principais Funções:**
+  - **ISNULL(valor, substituto)**: Se o valor for nulo, substitui por outro.
+  - **COALESCE(v1, v2, ...)**: Retorna o primeiro valor não nulo de uma lista.
+  - **NULLIF(v1, v2)**: Retorna nulo se os dois valores forem iguais.
+  - **IS NULL**: Operador para filtrar registros sem dados.
+### 13.5 Lógica Condicional (CASE Statement)
+- **O que é:** Funciona como um "SE... ENTÃO" (IF... THEN) dentro do SQL.
+- **Aplicações:**
+  - **Categorização:** Se Venda > 1000 então 'Premium'.
+  - **Padronização:** Converter 'Alemanha' para 'DE', 'Brasil' para 'BR'.
+- **Sintaxe Básica:**
+  
+`CASE
+    WHEN Condição THEN Resultado
+    ELSE Resultado_Padrão
+ END`
+### 13.5 Funções Aninhadas (Nested Functions)
+- **Conceito:** Usar uma função como entrada para outra função.
+- **Exemplo Prático:**
+  - **LEN(LOWER(LEFT('Maria', 2)))**
+  - **LEFT('Maria', 2)** -> 'Ma'
+  - **LOWER('Ma')** -> 'ma'
+  - **LEN('ma') -> Resultado Final: 2**
+### 13.6 Conclusão
+- Funções de linha única retornam **um resultado para cada linha.**
+- Podem ser usadas no **SELECT** (para exibir), no **WHERE** (para filtrar) e no **ORDER BY** (para ordenar).
+
