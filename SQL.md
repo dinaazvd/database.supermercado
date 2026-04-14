@@ -151,11 +151,13 @@ semelhante ao update, usamos uma cláusula **WHERE** para filtrar linhas especí
 - **DELETE FROM table_name**
 - **WHERE <condition>;**
 ### 4.6 Tabela Resumo de DDL
+
 | Comando | Ação que tomamos | Efeito nos Dados |
 | :--- | :--- | :--- |
-| INSERT | Adicionar | Novas linhas são criadas.|
-| UPDATE | Editar | Valores existentes são alterados.|
+| INSERT | Adicionar | Novas linhas são criadas. |
+| UPDATE | Editar | Valores existentes são alterados. |
 | DELETE | Remover | Linhas selecionadas são apagadas. |
+
 ## 5. Anatomia de uma Declaração SQL
 - Uma instrução SQL é composta de elementos específicos que dizem ao banco como processar
 o pedido:
@@ -416,6 +418,7 @@ uma vez**, evitando repetição, erros e bagunça nas tabelas.
 ## 14 Funções de Agregação
 ### 14.1 O que são Funções de Agregação?
 - As funções de agregação processam um conjunto de valores para retornar um **único valor resumido.** Elas são essenciais para transformar dados brutos em informações estratégicas.
+
 | **Funçao** | **Finalidade** | **Tipos de Dados Compatíveis** |
 | :--- | :--- | :--- ||
 | **COUNT** | Conta o número de registros (linhas) | Qualquer tipo |
@@ -423,6 +426,7 @@ uma vez**, evitando repetição, erros e bagunça nas tabelas.
 | **AVG** | Calcula a média aritmética dos valores | Apenas Numéricos |
 | **MAX** | Identifica o valor máximo (maior) | Numéricos, Datas e Texto |
 | **MIN** | Identificar o valor mínimo (menor) | Numéricos, Datas e Texto |
+
 ### 14.2 Cláusula GROUP BY (Agrupamento)
 - A cláusula **GROUP BY** é utilizada para organizar linhas que possuem valores idênticos em grupos. Ela é quase sempre utilizada em conjunto com as funções de agregação mencionadas acima.
 - **Condensação de Registros:** A principal função do **GROUP BY** é reduzir (achatar) múltiplos
