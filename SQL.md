@@ -420,7 +420,7 @@ uma vez**, evitando repetição, erros e bagunça nas tabelas.
 - As funções de agregação processam um conjunto de valores para retornar um **único valor resumido.** Elas são essenciais para transformar dados brutos em informações estratégicas.
 
 | **Funçao** | **Finalidade** | **Tipos de Dados Compatíveis** |
-| :--- | :--- | :--- ||
+| :--- | :--- | :--- |
 | **COUNT** | Conta o número de registros (linhas) | Qualquer tipo |
 | **SUM** | Soma os valores de uma coluna | Apenas Numéricos |
 | **AVG** | Calcula a média aritmética dos valores | Apenas Numéricos |
