@@ -413,4 +413,22 @@ uma vez**, evitando repetição, erros e bagunça nas tabelas.
 ### 13.6 Conclusão
 - Funções de linha única retornam **um resultado para cada linha.**
 - Podem ser usadas no **SELECT** (para exibir), no **WHERE** (para filtrar) e no **ORDER BY** (para ordenar).
-
+## 14 Funções de Agregação
+### 14.1 O que são Funções de Agregação?
+- As funções de agregação processam um conjunto de valores para retornar um **único valor resumido.** Elas são essenciais para transformar dados brutos em informações estratégicas.
+| **Funçao** | **Finalidade** | **Tipos de Dados Compatíveis** |
+| :--- | :--- | :--- ||
+| **COUNT** | Conta o número de registros (linhas) | Qualquer tipo |
+| **SUM** | Soma os valores de uma coluna | Apenas Numéricos |
+| **AVG** | Calcula a média aritmética dos valores | Apenas Numéricos |
+| **MAX** | Identifica o valor máximo (maior) | Numéricos, Datas e Texto |
+| **MIN** | Identificar o valor mínimo (menor) | Numéricos, Datas e Texto |
+### 14.2 Cláusula GROUP BY (Agrupamento)
+- A cláusula **GROUP BY** é utilizada para organizar linhas que possuem valores idênticos em grupos. Ela é quase sempre utilizada em conjunto com as funções de agregação mencionadas acima.
+- **Condensação de Registros:** A principal função do **GROUP BY** é reduzir (achatar) múltiplos
+registros em uma única linha de resumo por grupo.
+- **Cálculos em Nível de Grupo:** Ao contrário de uma conta simples no banco de dados inteiro, o
+agrupamento permite realizar **Cálculos de Nível de Grupo** (ex: calcular o faturamento total por
+categoria de produto em vez do faturamento total da loja).
+### Exemplo Prático
+- Se você tem uma tabela de vendas e usa GROUP BY regiao, o SQL pegará todas as vendas de"Sul", "Norte" e "Leste" e entregará apenas uma linha para cada região com os totais somados.
